@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -29,6 +30,14 @@ public class AppointmentController {
 
 
         return "appointments";
+    }
+
+    @GetMapping("/all")
+    public String showAllAppointments(Model model){
+        List<Appointment> appointmentList = (List<Appointment>)appointmentRepository.findAll().;
+        model.addAllAttributes(appointmentList);
+
+        return "all";
     }
 
     @PostMapping
